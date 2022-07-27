@@ -165,9 +165,14 @@ function forceEnd() {
     }
 }
 
+function saveScore() {
+    console.log('save score');
+}
 
 const startBtn = document.getElementById('startBtn');
 const tryAgainBtn = document.getElementById('tryAgainBtn');
+const saveInitialsBtn = document.getElementById('submitInitials');
 
 startBtn.addEventListener('click', startQuiz);
 tryAgainBtn.addEventListener('click', startQuiz);
+saveInitialsBtn.addEventListener('click', saveScore);

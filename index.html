@@ -54,10 +54,20 @@
         <h4 class="text-success mt-2" id="correctText" style="display: none;">Correct</h4>
         <h4 class="text-danger mt-2" id="incorrectText" style="display: none;">Incorrect</h4>
     </section>
-    <section id="resultsPanel" style="display: none;">
-        <div class="text-center" id="resultsContent">
+    <section id="resultsPanel" style="display: none;" class="">
+        <div id="resultsContent">
             <h2>All Done!</h2>
             <h4 class="display-4">You scored: <span id="userScore"></span>/<span id="totalAvailable"></span></h4>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Initials:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="initialsInput" placeholder="SAP">
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary" id="submitInitials">Submit</button>
+                </div>
+            </div>
+            <hr/>
             <button class="btn btn-primary" id="tryAgainBtn">Try Again</button>
         </div>
     </section>
