@@ -1,21 +1,21 @@
 console.log('start');
 const questions = [
-    'What is question 1?',
-    'What is question 2?',
-    'What is question 3?',
-    'What is question 4?',
-    'What is question 5?'
+    'If statements are enclosed using?',
+    'Which of these is not a reserved word in javascript?',
+    'Which HTML tag should be used to include javascript?',
+    'Are javascript variable names case sensitive?',
+    'What type is declared here: data = []'
 ];
 
 const options = [
-    ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-    ['Option 5', 'Option 6', 'Option 7', 'Option 8'],
-    ['Option 9', 'Option 10', 'Option 11', 'Option 12'],
-    ['Option 13', 'Option 14', 'Option 15', 'Option 16'],
-    ['Option 17', 'Option 18', 'Option 19', 'Option 20']
+    ['Curly Braces', 'Square Bracket', 'Hyphen', 'Parenthesis'],
+    ['function', 'integer', 'boolean', 'string'],
+    ['<javascript>', '<script>', '<js>', '<src>'],
+    ['Yes', 'No', 'Sometimes', 'It Depends'],
+    ['object', 'string', 'Array', 'Other']
 ];
 
-const answers = [ 0, 1, 1, 3, 2];
+const answers = [ 0, 1, 1, 0, 2];
 
 let currentQuestion = 0;
 let currentAnswer;
