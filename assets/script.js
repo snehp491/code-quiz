@@ -177,14 +177,20 @@ function saveScore() {
         scoresArray = JSON.parse(scoresArray);
     }
 
-    scoresArray.push({initials: initials, score: score});
+    initialsInput.value = '';
 
+    scoresArray.push({initials: initials, score: score});
+    scoresArray = scoresArray.sort((a, b) => a.score < b.score ? 1 : -1);
+    scoresArray = scoresArray.slice(0, 10);
     localStorage.setItem('scores', JSON.stringify(scoresArray));
 
 }
 function reset() {
     const highScoresPanel = document.getElementById('highScoresPanel');
     highScoresPanel.innerHTML = '';
+
+    const startBtn = document.getElementById('startBtn');
+    startBtn.style = '';
 
     const startDiv = document.getElementById('start');
     startDiv.style = '';
@@ -210,7 +216,7 @@ function getScores() {
 
         for (let i = 0; i < scoresArray.length; i++) {
             const scoresText = document.createElement('h6');
-            scoresText.innerText = (i + 1) + ': ' + scoresArray[i].initials + ' : ' + scoresArray[i].score;
+            scoresText.innerText = (i + 1) + ': ' + scoresArray[i].initials + ' -- ' + scoresArray[i].score;
             highScoresPanel.append(scoresText);
         }
     }
