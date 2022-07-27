@@ -167,12 +167,77 @@ function forceEnd() {
 
 function saveScore() {
     console.log('save score');
+    const initialsInput = document.getElementById('initialsInput');
+    const initials = initialsInput.value;
+
+    let scoresArray = localStorage.getItem('scores');
+    if (!scoresArray) {
+        scoresArray = new Array();
+    } else {
+        scoresArray = JSON.parse(scoresArray);
+    }
+
+    scoresArray.push({initials: initials, score: score});
+
+    localStorage.setItem('scores', JSON.stringify(scoresArray));
+
+}
+function reset() {
+    const highScoresPanel = document.getElementById('highScoresPanel');
+    highScoresPanel.innerHTML = '';
+
+    const startDiv = document.getElementById('start');
+    startDiv.style = '';
+}
+
+function getScores() {
+    forceEnd();
+    const highScoresPanel = document.getElementById('highScoresPanel');
+    highScoresPanel.innerHTML = '';
+
+    const header = document.createElement('h4');
+    header.innerHTML = 'High Scores'
+
+    highScoresPanel.append(header);
+    let scoresArray = localStorage.getItem('scores');
+
+    if (!scoresArray) {
+        const noScoresText = document.createElement('p');
+        noScoresText.innerText = 'No high scores available';
+        highScoresPanel.append(noScoresText);
+    } else {
+        scoresArray = JSON.parse(scoresArray);
+
+        for (let i = 0; i < scoresArray.length; i++) {
+            const scoresText = document.createElement('h6');
+            scoresText.innerText = (i + 1) + ': ' + scoresArray[i].initials + ' : ' + scoresArray[i].score;
+            highScoresPanel.append(scoresText);
+        }
+    }
+
+    highScoresPanel.style = 'width: 30vw;';
+    const startDiv = document.getElementById('start');
+    startDiv.style = 'display: none;';
+
+    const resultsPanel = document.getElementById('resultsPanel');
+    resultsPanel.style = 'display: none;';
+
+    const resetBtn = document.createElement('resetBtn');
+    resetBtn.className = 'btn btn-primary';
+    resetBtn.innerText = 'Reset';
+    resetBtn.addEventListener('click', reset);
+
+    highScoresPanel.append(resetBtn);
+
+
 }
 
 const startBtn = document.getElementById('startBtn');
 const tryAgainBtn = document.getElementById('tryAgainBtn');
 const saveInitialsBtn = document.getElementById('submitInitials');
+const showHighScoresLink = document.getElementById('showHighScoresLink');
 
 startBtn.addEventListener('click', startQuiz);
 tryAgainBtn.addEventListener('click', startQuiz);
 saveInitialsBtn.addEventListener('click', saveScore);
+showHighScoresLink.addEventListener('click', getScores);

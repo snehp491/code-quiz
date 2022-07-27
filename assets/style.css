@@ -10,3 +10,11 @@ header {
 .questions-panel {
     min-width: 40vw;
 }
+
+#showHighScoresLink {
+    text-decoration: underline;
+    color: blue;
+}
+#showHighScoresLink:hover {
+    cursor: pointer;
+}
