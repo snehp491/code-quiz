@@ -15,13 +15,13 @@
         <div>
             <a href>View High Scores</a>
         </div>
-        <div class="ml-auto">
-            Time 0
+        <div class="ml-auto" id="timeDiv">
+            Time <span id="timeLeft"></span>
         </div>
     </div>
 </header>
 <main class="container d-flex align-items-center justify-content-center">
-    <section>
+    <section id="start">
         <div class="text-center">
             <div>
                 <h2>Coding Quiz Challenge</h2>
@@ -37,10 +37,20 @@
         </div>
         <div class="text-center">
             <div>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" id="startBtn">
                     Start Quiz
                 </button>
             </div>
+        </div>
+    </section>
+    <section id="questionPanel" style="display: none;" class="questions-panel">
+        <label id="question"></label>
+        <div id="options"></div>
+    </section>
+    <section id="resultsPanel" style="display: none;">
+        <div class="text-center" id="resultsContent">
+            <h1 class="display-4">You scored: <span id="userScore"></span>/<span id="totalAvailable"></span></h1>
+            <button class="btn btn-primary" id="tryAgainBtn">Try Again</button>
         </div>
     </section>
 </main>

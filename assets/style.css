@@ -6,3 +6,7 @@ header {
     height: calc(100vh - 40px);
     width: 100%;
 }
+
+.questions-panel {
+    min-width: 40vw;
+}
