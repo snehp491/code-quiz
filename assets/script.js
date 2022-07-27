@@ -23,17 +23,6 @@ let currentTime = 10;
 
 let score = 0;
 
-function selectAnswer(i) {
-    if (currentAnswer) {
-        const current = document.getElementById(currentAnswer);
-        current.checked = false;
-    }
-
-    const newAnswer = i.target.id;
-    const newCurrent = document.getElementById(newAnswer);
-    newCurrent.checked = true;
-    currentAnswer = newAnswer;
-}
 
 let interval;
 
@@ -45,7 +34,7 @@ function startQuiz() {
     startBtn.style = 'display: none;';
 
     const startDiv = document.getElementById('start');
-    start.style = 'display: none;';
+    startDiv.style = 'display: none;';
 
     console.log('start quiz');
     score = 0;
@@ -79,23 +68,41 @@ function next() {
     if (!currentAnswer) {
         alert('You must select an answer');
     } else {
+        const questionFeedback = document.getElementById('questionFeedback');
+        const correct = document.getElementById('correctText');
+        const incorrect = document.getElementById('incorrectText');
+        questionFeedback.style = '';
+
 
         console.log(currentAnswer + ' vs ' + answers[currentQuestion]);
         if (currentAnswer === answers[currentQuestion] + '') {
-            alert('Correct');
+            incorrect.style = 'display: none;';
+            correct.style = '';
+
             score++;
         } else {
-            alert('Incorrect');
+
+            correct.style = 'display: none;';
+            incorrect.style = '';
+
+
             currentTime = currentTime - 10;
         }
         currentAnswer = null;
         currentQuestion++;
-        setQuestion();
+
+        if (currentQuestion < questions.length) {
+            setQuestion();
+        } else {
+            forceEnd();
+        }
     }
 }
 
 function setQuestion() {
+    console.log(currentQuestion);
     const questionPanel = document.getElementById('questionPanel');
+
     const question = document.getElementById('question');
     question.textContent = questions[currentQuestion];
 
@@ -103,49 +110,42 @@ function setQuestion() {
     optionsDiv.innerHTML = '';
 
     for (let i = 0; i < options[currentQuestion].length; i++) {
-        const formCheck = document.createElement('div');
-        formCheck.className = 'form-check';
 
-        const inputWrapper = document.createElement('input');
-        inputWrapper.className = 'form-check-input';
-        inputWrapper.value = i + '';
-        inputWrapper.id = i + '';
-        inputWrapper.type = 'radio';
-        inputWrapper.name = i + '';
-        inputWrapper.addEventListener('click', selectAnswer);
+        const optionButton = document.createElement('button');
+        optionButton.className = 'btn btn-primary mt-2';
+        optionButton.value = i + '';
+        optionButton.id = i + '';
+        optionButton.name = i + '';
+        optionButton.addEventListener('click', selectAnswer);
+        optionButton.innerText = (i + 1) + '. ' + options[currentQuestion][i];
+        optionButton.style = 'width: 250px; text-align: left;';
 
-        const optionLabel = document.createElement('label');
-        optionLabel.className = 'form-check-label';
-        optionLabel.innerText = options[currentQuestion][i];
-        optionLabel.htmlFor = i + '';
-
-        formCheck.appendChild(inputWrapper);
-        formCheck.appendChild(optionLabel);
-
-        optionsDiv.appendChild(formCheck);
+        optionsDiv.appendChild(optionButton);
     }
 
     questionPanel.innerHTML = '';
     questionPanel.style = '';
     questionPanel.appendChild(question);
     questionPanel.appendChild(optionsDiv);
+}
 
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'btn btn-primary';
-    nextBtn.addEventListener('click', next);
-    nextBtn.textContent = 'Next';
+function selectAnswer(i) {
+    console.log('select answer: ' + i);
+    if (currentAnswer) {
+        const current = document.getElementById(currentAnswer);
+        current.checked = false;
+    }
 
-    const row = document.createElement('div');
-    row.className = 'd-flex flex-row';
-    const col = document.createElement('div');
-    col.className = 'ml-auto';
-
-    col.appendChild(nextBtn);
-    row.appendChild(col);
-    questionPanel.appendChild(row);
+    const newAnswer = i.target.id;
+    const newCurrent = document.getElementById(newAnswer);
+    newCurrent.checked = true;
+    currentAnswer = newAnswer;
+    next();
 }
 
 function forceEnd() {
+    const questionFeedback = document.getElementById('questionFeedback');
+    questionFeedback.style = 'display: none;';
 
     console.log('force end');
 

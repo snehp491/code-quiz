@@ -20,7 +20,7 @@
         </div>
     </div>
 </header>
-<main class="container d-flex align-items-center justify-content-center">
+<main class="container d-flex flex-column align-items-center justify-content-center">
     <section id="start">
         <div class="text-center">
             <div>
@@ -44,12 +44,20 @@
         </div>
     </section>
     <section id="questionPanel" style="display: none;" class="questions-panel">
-        <label id="question"></label>
-        <div id="options"></div>
+        <h4 id="question"></h4>
+        <div id="options" class="d-flex flex-column"></div>
+
+    </section>
+    <section class="questions-panel" id="questionFeedback" style="display: none;">
+        <hr/>
+
+        <h4 class="text-success mt-2" id="correctText" style="display: none;">Correct</h4>
+        <h4 class="text-danger mt-2" id="incorrectText" style="display: none;">Incorrect</h4>
     </section>
     <section id="resultsPanel" style="display: none;">
         <div class="text-center" id="resultsContent">
-            <h1 class="display-4">You scored: <span id="userScore"></span>/<span id="totalAvailable"></span></h1>
+            <h2>All Done!</h2>
+            <h4 class="display-4">You scored: <span id="userScore"></span>/<span id="totalAvailable"></span></h4>
             <button class="btn btn-primary" id="tryAgainBtn">Try Again</button>
         </div>
     </section>
