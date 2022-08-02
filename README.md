@@ -9,3 +9,5 @@ As you proceed in your journey to becoming a full-stack web developer, it’s li
 
 ## Website Screenshot
 <img width="1229" alt="Screen Shot 2022-08-01 at 9 51 53 PM" src="https://user-images.githubusercontent.com/99702361/182274705-3c3e61fc-4508-4d3a-b009-959a4f0946c3.png">
+
+Link: https://snehp491.github.io/code-quiz/
